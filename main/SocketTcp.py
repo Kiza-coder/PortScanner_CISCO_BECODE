@@ -12,10 +12,7 @@ class SocketTcp:
         return self.__port
     
     def isOpen(self):
-        if self.__isOpen:
-            return "True"
-        else:
-            return "False"
+        return self.__isOpen
 
     def set_isOpen(self,value):
         self.__isOpen = value

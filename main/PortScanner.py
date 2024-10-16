@@ -60,7 +60,10 @@ class PortScanner:
         print("=" * 40)
         
         for i, tcp_socket in enumerate(self.__socket_list):
-            print("\033[1;34m{:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port() , tcp_socket.isOpen()))
+            if tcp_socket.isOpen():
+                print("\033[1;31m{:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port() , "True"))
+            else:
+                print("\033[1;34m{:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port() , "False"))
     
     
 
