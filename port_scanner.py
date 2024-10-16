@@ -32,6 +32,9 @@ def scan_ports(host, ports):
         results = executor.map(lambda port: scan_port(host, port), ports)
     for result in results:
         print(result)
+
+
+        
 def main():
         """
 
