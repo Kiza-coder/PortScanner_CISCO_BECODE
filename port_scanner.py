@@ -1,5 +1,6 @@
 import socket
 from concurrent.futures import ThreadPoolExecutor
+
 def scan_port(host, port):
     """
     Scans a single port on the specified host.
