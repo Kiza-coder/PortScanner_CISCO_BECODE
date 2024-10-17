@@ -50,6 +50,7 @@ def main():
         print(f"Scanning {host} from port {start_port} to {end_port}...")
         scan_ports(host, ports)
 
+
 if __name__ == "__main__":
     main()
 

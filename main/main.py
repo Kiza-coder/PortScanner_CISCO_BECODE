@@ -13,15 +13,12 @@ def main():
         scanner.scan_ports()
         scanner.display()
         scanner.create_log_file()
+        
     except InvalidPortRangeError as e:
         print(f"Exception caught : {e}" )
-    except:
-        pass
-
-    
-    
-    
-   
+        
+    except PermissionError as e:
+        print(f"Exception caught : {e}")
 
 if __name__ == "__main__":
     main()

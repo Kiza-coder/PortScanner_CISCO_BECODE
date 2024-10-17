@@ -66,23 +66,30 @@ class PortScanner:
 
         for i, tcp_socket in enumerate(self.__socket_list):
             if tcp_socket.isOpen():
-                print("\033[{1;31m:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port() , "True"))
+                print("\033[1;31m{:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port(), "True"))
             else:
                 print("\033[1;34m{:<18} {:<10} {:<10}\033[0m".format(tcp_socket.get_ip(), tcp_socket.get_port() , "False"))
     
     
+    
+    #Create a log file
     def create_log_file(self):
         
         file_name = str(datetime.now().date())
         
-        with open(file_name, 'w') as file:
-            
-            file.write("Ip Adresses-------Port---------Open\n")
-            file.write("**************************************\n")
-            
-            for tcp_socket in self.__socket_list:
-                file.write(f"{tcp_socket.get_ip()}-------{tcp_socket.get_port()}-----------{tcp_socket.isOpen()}\n")
-        
+        try:
+            with open(file_name, 'w') as file:
+                
+                file.write("Ip Adresses-------Port---------Open\n")
+                file.write("**************************************\n")
+                
+                for tcp_socket in self.__socket_list:
+                    file.write(f"{tcp_socket.get_ip()}-------{tcp_socket.get_port()}-----------{tcp_socket.isOpen()}\n")
+                    
+        except PermissionError:
+            print("You dont have permission to create this file")
+            raise
+    
         print("File log file created") 
            
 
