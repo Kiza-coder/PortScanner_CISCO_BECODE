@@ -15,6 +15,8 @@ class PortScanner:
             raise InvalidPortRangeError(start_port,end_port)
         if start_port < 0 or end_port < 0:
             raise InvalidPortRangeError(start_port,end_port,"Ports can't be negatif")
+        if start_port > 65535 or end_port > 65535:
+            raise InvalidPortRangeError(start_port,end_port, "Ports can't exceed 65535")
 
         self.__range_ports = range(start_port, end_port + 1)
         self.__host = host
@@ -30,9 +32,7 @@ class PortScanner:
             raise
         
         self.__socket_list = [SocketTcp(self.__ip, port) for port in self.__range_ports]
-   
 
-    
     
     # Function who scan only 1 socket
     def scan_tcp_port(self,tcp_socket: SocketTcp):

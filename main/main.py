@@ -1,7 +1,6 @@
 from PortScanner import PortScanner
 from InvalidPortRangeError import InvalidPortRangeError
 
-
 def main():
 
     host = input("Enter the host to scan (IP or domain): ")
@@ -13,12 +12,12 @@ def main():
         scanner.scan_ports()
         scanner.display()
         scanner.create_log_file()
+            
+    except InvalidPortRangeError as ex:
+        print(f"Exception caught : {ex}" )
         
-    except InvalidPortRangeError as e:
-        print(f"Exception caught : {e}" )
-        
-    except PermissionError as e:
-        print(f"Exception caught : {e}")
+    except PermissionError as ex:
+        print(f"Exception caught : {ex}")
 
 if __name__ == "__main__":
     main()
