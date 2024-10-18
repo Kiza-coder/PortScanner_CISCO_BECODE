@@ -1,19 +1,22 @@
 from PortScanner import PortScanner
-from InvalidPortRangeError import InvalidPortRangeError
+from InputValidator import *
+
 
 def main():
 
-    host = input("Enter the host to scan (IP or domain): ")
-    start_port = int(input("Enter the starting port number: "))
-    end_port = int(input("Enter the ending port number: "))
-    
+    validator = InputValidator()
     try:
+        host = input("Enter the host IP to scan): ")
+        validator.validate_ip(host)
+        start_port = int(input("Enter the starting port number: "))
+        end_port = int(input("Enter the ending port number: "))
+        validator.validate_range(start_port,end_port)
         scanner = PortScanner(host, start_port,end_port)
         scanner.scan_ports()
         scanner.display()
         scanner.create_log_file()
             
-    except InvalidPortRangeError as ex:
+    except InvalidInputError as ex:
         print(f"Exception caught : {ex}" )
         
     except PermissionError as ex:
